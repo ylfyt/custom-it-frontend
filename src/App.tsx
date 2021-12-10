@@ -1,11 +1,10 @@
 import React from 'react';
+import Home from './pages/Home';
 
 function App() {
 	return (
 		<div className="App">
-			<div className="container bg-green-600 w-full">
-				<div className="w-full "></div>
-			</div>
+			<Home />
 		</div>
 	);
 }
