@@ -1,21 +1,14 @@
 import { FC } from 'react';
+import { IProductProps } from '../interfaces';
 
-interface PropsInterface {
-	product: {
-		_id: string;
-		name: string;
-		description: string;
-		price: number;
-		storeId: string;
-		image: string;
-	};
-}
-
-const ProductCard: FC<PropsInterface> = (props) => {
+const ProductCard: FC<IProductProps> = ({ product }) => {
 	return (
-		<div className="ProductCard w-[200rem]">
-			<img src={props.product.image} alt={props.product.name} />
-			<p>{props.product.name}</p>
+		<div className="ProductCard p-5 bg-gray-300 w-[200px]">
+			<img src={product.image} alt={product.name} />
+			<div>
+				<div>{product.name}</div>
+				<div>{product.price}</div>
+			</div>
 		</div>
 	);
 };
