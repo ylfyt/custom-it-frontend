@@ -9,7 +9,7 @@ const Home: FC = (props) => {
 			<h1>Home</h1>
 			<div className="flex gap-4 flex-wrap">
 				{products.map((product) => {
-					return <ProductCard product={product} key={product._id} />;
+					return <ProductCard product={product} key={product.id} />;
 				})}
 			</div>
 		</div>

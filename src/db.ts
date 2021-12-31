@@ -1,6 +1,6 @@
 export const Products = [
 	{
-		_id: '12',
+		id: '12',
 		name: 'Custom keyboard',
 		description: 'Custom mechanical keyboard gateron',
 		price: 600000,
@@ -8,7 +8,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '13',
+		id: '13',
 		name: 'Custom moodlamp',
 		description: 'Beautiful moodlamp for night',
 		price: 150000,
@@ -16,7 +16,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '14',
+		id: '14',
 		name: 'Custom Keycaps',
 		description: 'Custom artisan keycaps',
 		price: 60000,
@@ -24,7 +24,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '12',
+		id: '12',
 		name: 'Custom keyboard',
 		description: 'Custom mechanical keyboard gateron',
 		price: 600000,
@@ -32,7 +32,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '13',
+		id: '13',
 		name: 'Custom moodlamp',
 		description: 'Beautiful moodlamp for night',
 		price: 150000,
@@ -40,7 +40,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '14',
+		id: '14',
 		name: 'Custom Keycaps',
 		description: 'Custom artisan keycaps',
 		price: 60000,
@@ -48,7 +48,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '12',
+		id: '12',
 		name: 'Custom keyboard',
 		description: 'Custom mechanical keyboard gateron',
 		price: 600000,
@@ -56,7 +56,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '13',
+		id: '13',
 		name: 'Custom moodlamp',
 		description: 'Beautiful moodlamp for night',
 		price: 150000,
@@ -64,7 +64,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '14',
+		id: '14',
 		name: 'Custom Keycaps',
 		description: 'Custom artisan keycaps',
 		price: 60000,
@@ -72,7 +72,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '12',
+		id: '12',
 		name: 'Custom keyboard',
 		description: 'Custom mechanical keyboard gateron',
 		price: 600000,
@@ -80,7 +80,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '13',
+		id: '13',
 		name: 'Custom moodlamp',
 		description: 'Beautiful moodlamp for night',
 		price: 150000,
@@ -88,7 +88,7 @@ export const Products = [
 		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
 	},
 	{
-		_id: '14',
+		id: '14',
 		name: 'Custom Keycaps',
 		description: 'Custom artisan keycaps',
 		price: 60000,
