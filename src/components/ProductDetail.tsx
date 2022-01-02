@@ -14,7 +14,7 @@ const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
 					<img className="w-full" src={product.image} alt={product.name} />
 				</div>
 				<div className="w-1/2 ml-4 flex flex-col justify-between">
-					<div className="flex flex-col justify-between bg-red-400 h-full">
+					<div className="flex flex-col justify-between h-full">
 						<div className="">
 							<div className="text-xl font-bold">{product.name}</div>
 							<div className="text-base">{product.description}</div>
