@@ -40,6 +40,41 @@ const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
 					<div>100 Likes</div>
 				</div>
 			</div>
+			<div className="py-4">
+				<hr />
+			</div>
+			<div className="">
+				<div className="flex justify-between">
+					<input type="text" className="mr-2 w-full p-1" placeholder="comment" />
+					<button className="px-3 py-1 bg-yellow-50">Submit</button>
+				</div>
+				<div className="">
+					<div className="mt-5 p-2 bg-gray-300">
+						<div className="flex items-center">
+							<div className="font-bold">Yudi Alfayat</div>
+							<div className="px-2">-</div>
+							<div className="text-sm">3 Januari 2021, 11.30pm</div>
+						</div>
+						<div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, vitae!</div>
+					</div>
+					<div className="mt-5 p-2 bg-gray-300">
+						<div className="flex items-center">
+							<div className="font-bold">Yudi Alfayat</div>
+							<div className="px-2">-</div>
+							<div className="text-sm">3 Januari 2021, 11.30pm</div>
+						</div>
+						<div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, vitae!</div>
+					</div>
+					<div className="mt-5 p-2 bg-gray-300">
+						<div className="flex items-center">
+							<div className="font-bold">Yudi Alfayat</div>
+							<div className="px-2">-</div>
+							<div className="text-sm">3 Januari 2021, 11.30pm</div>
+						</div>
+						<div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, vitae!</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
