@@ -1,0 +1,11 @@
+query Products {
+	products {
+		id
+		name
+		price
+		stock
+		image
+		storeId
+		description
+	}
+}

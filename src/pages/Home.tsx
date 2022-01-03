@@ -1,39 +1,25 @@
 import { FC, useEffect, useState } from 'react';
-import { useQuery } from 'urql';
 import ProductCard from '../components/ProductCard';
-import { Products } from '../db';
 import { IProduct } from '../interfaces';
+import { useProductsQuery } from '../generated/graphql';
 
-const ProductsQuery = `
-query {
-	products{
-		id
-		name
-	}
-}
-`;
+const Home: FC = () => {
+	const [{ data }] = useProductsQuery();
+	const [products, setProducts] = useState<IProduct[] | null>(null);
 
-const Home: FC = (props) => {
-	const [result, reexecuteQuery] = useQuery({ query: ProductsQuery });
-	const [products, setProduct] = useState<IProduct[] | null>(null);
-
-	const { data, fetching, error } = result;
 	useEffect(() => {
-		if (!fetching) {
-			if (!error) {
-				// console.log(data.products);
-				setProduct(data.products);
-			}
+		if (data) {
+			setProducts(data.products);
 		}
-	}, [error, fetching]);
+	}, [data]);
 
 	return (
 		<div className="Home">
-			{products === null ? (
+			{!products ? (
 				<p>Loading...</p>
 			) : (
 				<div className="flex gap-4 flex-wrap">
-					{products.map((product) => {
+					{data?.products.map((product) => {
 						return <ProductCard product={product} key={product.id} />;
 					})}
 				</div>
