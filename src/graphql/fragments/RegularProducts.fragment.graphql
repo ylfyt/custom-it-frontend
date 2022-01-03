@@ -4,16 +4,4 @@ fragment RegularProducts on Product {
 	price
 	stock
 	imageUrl
-	storeId
-	description
-	__typename
-	comments {
-		id
-		text
-		createAt
-		user {
-			id
-			username
-		}
-	}
 }

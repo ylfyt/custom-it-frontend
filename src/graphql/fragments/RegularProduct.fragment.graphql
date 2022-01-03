@@ -6,7 +6,6 @@ fragment RegularProduct on Product {
 	stock
 	storeId
 	imageUrl
-	__typename
 	comments {
 		id
 		text
