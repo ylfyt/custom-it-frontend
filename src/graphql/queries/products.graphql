@@ -4,7 +4,7 @@ query Products {
 		name
 		price
 		stock
-		image
+		imageUrl
 		storeId
 		description
 	}

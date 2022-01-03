@@ -6,6 +6,6 @@ query Product($productId: String!) {
 		price
 		stock
 		storeId
-		image
+		imageUrl
 	}
 }

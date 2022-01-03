@@ -10,7 +10,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 	return (
 		<Link to={'/product/' + product.id}>
 			<div className="ProductCard p-5 bg-gray-300 w-[200px]">
-				<img src={product.image} alt={product.name} />
+				<img src={product.imageUrl} alt={product.name} />
 				<div>
 					<div>{product.name}</div>
 					<div>{product.price}</div>

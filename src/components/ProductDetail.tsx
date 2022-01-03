@@ -11,7 +11,7 @@ const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
 		<div className="bg-gray-400 p-4">
 			<div className="flex mb-5">
 				<div className="bg-green-300 w-1/2">
-					<img className="w-full" src={product.image} alt={product.name} />
+					<img className="w-full" src={product.imageUrl} alt={product.name} />
 				</div>
 				<div className="w-1/2 ml-4 flex flex-col justify-between">
 					<div className="flex flex-col justify-between h-full">
