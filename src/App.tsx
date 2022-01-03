@@ -1,4 +1,3 @@
-import React from 'react';
 import Wrapper from './components/Wrapper';
 import Home from './pages/Home';
 import Product from './pages/product';

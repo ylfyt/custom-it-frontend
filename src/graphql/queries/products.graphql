@@ -1,21 +1,5 @@
 query Products {
 	products {
-		id
-		name
-		price
-		stock
-		imageUrl
-		storeId
-		description
-		__typename
-		comments {
-			id
-			text
-			createAt
-			user {
-				id
-				username
-			}
-		}
+		...RegularProducts
 	}
 }

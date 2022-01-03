@@ -1,10 +1,9 @@
 import { FunctionComponent } from 'react';
-import { ProductQuery } from '../graphql/generated/graphql';
-import { IProduct } from '../utils/interfaces';
+import { RegularProductFragment } from '../graphql/generated/graphql';
 import Comment from './Comment';
 
 interface ProductDetailProps {
-	product: ProductQuery['product'];
+	product: RegularProductFragment;
 }
 
 const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {

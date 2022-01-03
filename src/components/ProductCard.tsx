@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { IProduct } from '../utils/interfaces';
+import { RegularProductsFragment } from '../graphql/generated/graphql';
 
 interface ProductCardProps {
-	product: IProduct;
+	product: RegularProductsFragment;
 }
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {

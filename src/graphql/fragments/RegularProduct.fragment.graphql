@@ -1,0 +1,25 @@
+fragment RegularProduct on Product {
+	id
+	name
+	description
+	price
+	stock
+	storeId
+	imageUrl
+	__typename
+	comments {
+		id
+		text
+		createAt
+		user {
+			id
+			username
+		}
+	}
+	store {
+		id
+		username
+		name
+		address
+	}
+}
