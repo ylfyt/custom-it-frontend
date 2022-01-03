@@ -6,6 +6,9 @@ import { createClient, Provider } from 'urql';
 
 const client = createClient({
 	url: 'http://localhost:3333/graphql',
+	fetchOptions: {
+		credentials: 'include',
+	},
 });
 
 function App() {
