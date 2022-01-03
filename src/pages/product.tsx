@@ -20,7 +20,7 @@ const Product: FunctionComponent<ProductProps> = () => {
 	return (
 		<div>
 			{fetching && <p>Loading...</p>}
-			{!fetching && !product && <p>Failed to fetch</p>}
+			{!fetching && !product && <p>Product Not Found</p>}
 			{!fetching && product && <ProductDetail product={product} />}
 		</div>
 	);
