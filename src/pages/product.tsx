@@ -1,25 +1,29 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import ProductDetail from '../components/ProductDetail';
 import { IProduct } from '../interfaces';
 import { useParams } from 'react-router-dom';
+import { useProductQuery } from '../generated/graphql';
 
 interface ProductProps {}
 
 const Product: FunctionComponent<ProductProps> = () => {
-	const product: IProduct = {
-		id: '12',
-		name: 'Custom keyboard',
-		description: 'Custom mechanical keyboard gateron',
-		price: 600000,
-		stock: 10,
-		storeId: '1',
-		image: 'https://i.picsum.photos/id/46/200/200.jpg?hmac=lUGWM3WNJB0TQ-OXq3KI1x-TPgKIuViXG4lKHiCGbao',
-	};
-
 	const params = useParams();
-	console.log(params.productId);
+	const [product, setProduct] = useState<IProduct | null>(null);
+	const [{ data, fetching }] = useProductQuery({ variables: { productId: params.productId! } });
 
-	return <div>{!product ? <p>Loading...</p> : <ProductDetail product={product} />}</div>;
+	useEffect(() => {
+		if (data) {
+			setProduct(data.product);
+		}
+	}, [data]);
+
+	return (
+		<div>
+			{fetching && <p>Loading...</p>}
+			{!fetching && !product && <p>Failed to fetch</p>}
+			{!fetching && product && <ProductDetail product={product} />}
+		</div>
+	);
 };
 
 export default Product;

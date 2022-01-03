@@ -174,6 +174,12 @@ export type User = {
 	username: Scalars['String'];
 };
 
+export type ProductQueryVariables = Exact<{
+	productId: Scalars['String'];
+}>;
+
+export type ProductQuery = { __typename?: 'Query'; product: { __typename?: 'Product'; id: string; name: string; description: string; price: number; stock: number; storeId: string; image: string } };
+
 export type ProductsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ProductsQuery = {
@@ -181,6 +187,23 @@ export type ProductsQuery = {
 	products: Array<{ __typename?: 'Product'; id: string; name: string; price: number; stock: number; image: string; storeId: string; description: string }>;
 };
 
+export const ProductDocument = gql`
+	query Product($productId: String!) {
+		product(id: $productId) {
+			id
+			name
+			description
+			price
+			stock
+			storeId
+			image
+		}
+	}
+`;
+
+export function useProductQuery(options: Omit<Urql.UseQueryArgs<ProductQueryVariables>, 'query'> = {}) {
+	return Urql.useQuery<ProductQuery>({ query: ProductDocument, ...options });
+}
 export const ProductsDocument = gql`
 	query Products {
 		products {
