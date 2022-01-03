@@ -1,8 +1,9 @@
 import React from 'react';
 import Wrapper from './components/Wrapper';
 import Home from './pages/Home';
-import Detail from './pages/detail';
+import Product from './pages/product';
 import { createClient, Provider } from 'urql';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const client = createClient({
 	url: 'http://localhost:3333/graphql',
@@ -13,13 +14,18 @@ const client = createClient({
 
 function App() {
 	return (
-		<Provider value={client}>
-			<div className="App">
-				<Wrapper>
-					<Home />
-				</Wrapper>
-			</div>
-		</Provider>
+		<Router>
+			<Provider value={client}>
+				<div className="App">
+					<Wrapper>
+						<Routes>
+							<Route path="/" element={<Home />} />
+							<Route path="/product/:productId" element={<Product />} />
+						</Routes>
+					</Wrapper>
+				</div>
+			</Provider>
+		</Router>
 	);
 }
 

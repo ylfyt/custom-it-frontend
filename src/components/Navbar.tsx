@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 interface NavBarProps {}
 
@@ -9,7 +10,7 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
 				<div>Custom It</div>
 			</div>
 			<div className="flex gap-3 text-lg">
-				<div>Home</div>
+				<Link to="/">Home</Link>
 				<div>Cart</div>
 				<div>Yudi Alfayat</div>
 			</div>
