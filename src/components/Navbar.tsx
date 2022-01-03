@@ -5,9 +5,11 @@ interface NavBarProps {}
 
 const NavBar: FunctionComponent<NavBarProps> = () => {
 	return (
-		<div className="flex justify-between items-center">
+		<div className="flex justify-between items-center mb-5">
 			<div className="text-3xl font-bold">
-				<div>Custom It</div>
+				<Link to="/">
+					<div>Custom It</div>
+				</Link>
 			</div>
 			<div className="flex gap-3 text-lg">
 				<Link to="/">Home</Link>
