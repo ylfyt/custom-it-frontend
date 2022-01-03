@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { IComment } from '../interfaces';
+import { IComment } from '../utils/interfaces';
 import { convertTimestampToDatetime } from '../utils/convertTimestampToDatetime';
 
 interface CommentProps {

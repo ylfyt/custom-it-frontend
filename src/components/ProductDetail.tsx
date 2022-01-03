@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { IProduct } from '../interfaces';
+import { IProduct } from '../utils/interfaces';
 import Comment from './Comment';
 
 interface ProductDetailProps {

@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import { IProduct } from '../interfaces';
+import { IProduct } from '../utils/interfaces';
 import { useProductsQuery } from '../generated/graphql';
 
 const Home: FC = () => {

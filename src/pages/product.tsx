@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import ProductDetail from '../components/ProductDetail';
-import { IProduct } from '../interfaces';
+import { IProduct } from '../utils/interfaces';
 import { useParams } from 'react-router-dom';
 import { useProductQuery } from '../generated/graphql';
 

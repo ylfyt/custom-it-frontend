@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { IProduct } from '../interfaces';
+import { IProduct } from '../utils/interfaces';
 
 interface ProductCardProps {
 	product: IProduct;
@@ -9,7 +9,7 @@ interface ProductCardProps {
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
 	return (
 		<Link to={'/product/' + product.id}>
-			<div className="ProductCard p-5 bg-gray-300 w-[200px]">
+			<div className="ProductCard p-5 bg-gray-300 w-[200px] min-h-[310px]">
 				<img src={product.imageUrl} alt={product.name} />
 				<div>
 					<div>{product.name}</div>
