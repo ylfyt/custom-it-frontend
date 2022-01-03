@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Product from './pages/product';
 import { createClient, Provider } from 'urql';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Register from './pages/register';
 
 const client = createClient({
 	url: 'http://localhost:3333/graphql',
@@ -20,6 +21,7 @@ function App() {
 						<Routes>
 							<Route path="/" element={<Home />} />
 							<Route path="/product/:productId" element={<Product />} />
+							<Route path="/register" element={<Register />} />
 						</Routes>
 					</Wrapper>
 				</div>
