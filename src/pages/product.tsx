@@ -2,13 +2,13 @@ import { FunctionComponent, useEffect, useState } from 'react';
 import ProductDetail from '../components/ProductDetail';
 import { IProduct } from '../utils/interfaces';
 import { useParams } from 'react-router-dom';
-import { useProductQuery } from '../generated/graphql';
+import { ProductQuery, useProductQuery } from '../generated/graphql';
 
 interface ProductProps {}
 
 const Product: FunctionComponent<ProductProps> = () => {
 	const params = useParams();
-	const [product, setProduct] = useState<IProduct | null>(null);
+	const [product, setProduct] = useState<ProductQuery['product'] | null>(null);
 	const [{ data, fetching }] = useProductQuery({ variables: { productId: params.productId! } });
 
 	useEffect(() => {

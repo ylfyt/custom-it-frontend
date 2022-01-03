@@ -17,5 +17,11 @@ query Product($productId: String!) {
 				username
 			}
 		}
+		store {
+			id
+			username
+			name
+			address
+		}
 	}
 }

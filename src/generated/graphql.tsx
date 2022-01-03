@@ -39,13 +39,11 @@ export type CreateProductInput = {
   name: Scalars['String'];
   price: Scalars['Float'];
   stock: Scalars['Float'];
-  storeId: Scalars['String'];
 };
 
 export type CreateStoreInput = {
   address: Scalars['String'];
   name: Scalars['String'];
-  username: Scalars['String'];
 };
 
 export type Like = {
@@ -65,7 +63,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createComment?: Maybe<Comment>;
   createLike?: Maybe<Like>;
-  createProduct: Product;
+  createProduct?: Maybe<Product>;
   createStore?: Maybe<Store>;
   login?: Maybe<User>;
   logout: Scalars['Boolean'];
@@ -191,7 +189,7 @@ export type ProductQueryVariables = Exact<{
 }>;
 
 
-export type ProductQuery = { __typename?: 'Query', product: { __typename: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }> } };
+export type ProductQuery = { __typename?: 'Query', product: { __typename: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } } };
 
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -218,6 +216,12 @@ export const ProductDocument = gql`
         id
         username
       }
+    }
+    store {
+      id
+      username
+      name
+      address
     }
   }
 }

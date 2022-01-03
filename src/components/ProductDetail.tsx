@@ -1,9 +1,10 @@
 import { FunctionComponent } from 'react';
+import { ProductQuery } from '../generated/graphql';
 import { IProduct } from '../utils/interfaces';
 import Comment from './Comment';
 
 interface ProductDetailProps {
-	product: IProduct;
+	product: ProductQuery['product'];
 }
 
 const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
@@ -34,8 +35,8 @@ const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
 			</div>
 			<div className="flex justify-between items-center">
 				<div className="">
-					<div>Toko Jaya Selalu</div>
-					<div>Jalan Ahmand Yani no 61, Payakumbuh</div>
+					<div>{product.store.name}</div>
+					<div>{product.store.address}</div>
 				</div>
 				<div>
 					<div>100 Likes</div>
