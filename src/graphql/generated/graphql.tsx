@@ -188,6 +188,13 @@ export type RegularProductFragment = { __typename?: 'Product', id: string, name:
 
 export type RegularProductsFragment = { __typename?: 'Product', id: string, name: string, price: number, stock: number, imageUrl: string };
 
+export type RegisterMutationVariables = Exact<{
+  data: RegisterInput;
+}>;
+
+
+export type RegisterMutation = { __typename?: 'Mutation', register?: { __typename?: 'User', id: string, username: string } | null | undefined };
+
 export type ProductQueryVariables = Exact<{
   productId: Scalars['String'];
 }>;
@@ -235,6 +242,18 @@ export const RegularProductsFragmentDoc = gql`
   imageUrl
 }
     `;
+export const RegisterDocument = gql`
+    mutation Register($data: RegisterInput!) {
+  register(data: $data) {
+    id
+    username
+  }
+}
+    `;
+
+export function useRegisterMutation() {
+  return Urql.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument);
+};
 export const ProductDocument = gql`
     query Product($productId: String!) {
   product(id: $productId) {
