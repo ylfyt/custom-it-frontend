@@ -50,9 +50,9 @@ const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
 					<button className="px-3 py-1 bg-yellow-50">Submit</button>
 				</div>
 				<div className="">
-					<Comment />
-					<Comment />
-					<Comment />
+					{product.comments.map((comment, idx) => {
+						return <Comment key={idx} comment={comment} />;
+					})}
 				</div>
 			</div>
 		</div>

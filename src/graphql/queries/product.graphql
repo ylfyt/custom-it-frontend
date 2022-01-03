@@ -7,5 +7,15 @@ query Product($productId: String!) {
 		stock
 		storeId
 		imageUrl
+		__typename
+		comments {
+			id
+			text
+			createAt
+			user {
+				id
+				username
+			}
+		}
 	}
 }

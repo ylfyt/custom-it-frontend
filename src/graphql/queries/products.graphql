@@ -7,5 +7,15 @@ query Products {
 		imageUrl
 		storeId
 		description
+		__typename
+		comments {
+			id
+			text
+			createAt
+			user {
+				id
+				username
+			}
+		}
 	}
 }

@@ -21,6 +21,7 @@ export type Comment = {
   id: Scalars['ID'];
   productId: Scalars['String'];
   text: Scalars['String'];
+  user: User;
   userId: Scalars['String'];
 };
 
@@ -190,12 +191,12 @@ export type ProductQueryVariables = Exact<{
 }>;
 
 
-export type ProductQuery = { __typename?: 'Query', product: { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string } };
+export type ProductQuery = { __typename?: 'Query', product: { __typename: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }> } };
 
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: string, name: string, price: number, stock: number, imageUrl: string, storeId: string, description: string }> };
+export type ProductsQuery = { __typename?: 'Query', products: Array<{ __typename: 'Product', id: string, name: string, price: number, stock: number, imageUrl: string, storeId: string, description: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }> }> };
 
 
 export const ProductDocument = gql`
@@ -208,6 +209,16 @@ export const ProductDocument = gql`
     stock
     storeId
     imageUrl
+    __typename
+    comments {
+      id
+      text
+      createAt
+      user {
+        id
+        username
+      }
+    }
   }
 }
     `;
@@ -225,6 +236,16 @@ export const ProductsDocument = gql`
     imageUrl
     storeId
     description
+    __typename
+    comments {
+      id
+      text
+      createAt
+      user {
+        id
+        username
+      }
+    }
   }
 }
     `;

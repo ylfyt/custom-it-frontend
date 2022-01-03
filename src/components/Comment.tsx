@@ -1,16 +1,22 @@
 import { FunctionComponent } from 'react';
+import { IComment } from '../interfaces';
+import { convertTimestampToDatetime } from '../utils/convertTimestampToDatetime';
 
-interface CommentProps {}
+interface CommentProps {
+	comment: IComment;
+}
 
-const Comment: FunctionComponent<CommentProps> = () => {
+const Comment: FunctionComponent<CommentProps> = ({ comment }) => {
+	const date = convertTimestampToDatetime(comment.createAt);
+
 	return (
 		<div className="mt-5 p-2 bg-gray-300">
 			<div className="flex items-center">
-				<div className="font-bold">Yudi Alfayat</div>
+				<div className="font-bold">{comment.user.username}</div>
 				<div className="px-2">-</div>
-				<div className="text-sm">3 Januari 2021, 11.30pm</div>
+				<div className="text-sm">{date}</div>
 			</div>
-			<div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem, vitae!</div>
+			<div>{comment.text}</div>
 		</div>
 	);
 };
