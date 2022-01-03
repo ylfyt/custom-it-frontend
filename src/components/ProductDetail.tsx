@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { ProductQuery } from '../generated/graphql';
+import { ProductQuery } from '../graphql/generated/graphql';
 import { IProduct } from '../utils/interfaces';
 import Comment from './Comment';
 
