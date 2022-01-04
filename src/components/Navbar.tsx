@@ -1,11 +1,17 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMeQuery } from '../graphql/generated/graphql';
 
-interface NavBarProps {}
+interface NavBarProps {
+	signal: boolean;
+}
 
-const NavBar: FunctionComponent<NavBarProps> = () => {
+const NavBar: FunctionComponent<NavBarProps> = ({ signal }) => {
 	const [{ data, fetching, error }] = useMeQuery();
+
+	useEffect(() => {
+		console.log('Navbar');
+	}, [signal]);
 
 	return (
 		<div className="flex justify-between items-center mb-5">

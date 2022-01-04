@@ -2,9 +2,11 @@ import { FunctionComponent, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../graphql/generated/graphql';
 
-interface LoginProps {}
+interface LoginProps {
+	toggleSignal: () => void;
+}
 
-const Login: FunctionComponent<LoginProps> = () => {
+const Login: FunctionComponent<LoginProps> = ({ toggleSignal }) => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [validUsername, setValidUsername] = useState(false);
@@ -41,6 +43,7 @@ const Login: FunctionComponent<LoginProps> = () => {
 
 		if (response.data?.login !== null) {
 			setError('Success');
+			toggleSignal();
 			navigate('/');
 		} else {
 			setError('Failed');
