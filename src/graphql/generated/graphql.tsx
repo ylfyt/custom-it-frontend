@@ -188,6 +188,8 @@ export type RegularProductFragment = { __typename?: 'Product', id: string, name:
 
 export type RegularProductsFragment = { __typename?: 'Product', id: string, name: string, price: number, stock: number, imageUrl: string };
 
+export type RegularUserFragment = { __typename?: 'User', id: string, username: string };
+
 export type LoginMutationVariables = Exact<{
   data: LoginInput;
 }>;
@@ -254,14 +256,19 @@ export const RegularProductsFragmentDoc = gql`
   imageUrl
 }
     `;
+export const RegularUserFragmentDoc = gql`
+    fragment RegularUser on User {
+  id
+  username
+}
+    `;
 export const LoginDocument = gql`
     mutation Login($data: LoginInput!) {
   login(data: $data) {
-    id
-    username
+    ...RegularUser
   }
 }
-    `;
+    ${RegularUserFragmentDoc}`;
 
 export function useLoginMutation() {
   return Urql.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument);
@@ -269,11 +276,10 @@ export function useLoginMutation() {
 export const RegisterDocument = gql`
     mutation Register($data: RegisterInput!) {
   register(data: $data) {
-    id
-    username
+    ...RegularUser
   }
 }
-    `;
+    ${RegularUserFragmentDoc}`;
 
 export function useRegisterMutation() {
   return Urql.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument);
@@ -281,11 +287,10 @@ export function useRegisterMutation() {
 export const MeDocument = gql`
     query Me {
   me {
-    id
-    username
+    ...RegularUser
   }
 }
-    `;
+    ${RegularUserFragmentDoc}`;
 
 export function useMeQuery(options: Omit<Urql.UseQueryArgs<MeQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<MeQuery>({ query: MeDocument, ...options });
