@@ -18,8 +18,8 @@ const client = createClient({
 function App() {
 	const [signal, setSignal] = useState(false);
 
-	const toggleSignal = () => {
-		setSignal(!signal);
+	const toggleSignal = (val: boolean) => {
+		setSignal(val);
 	};
 
 	return (
@@ -27,7 +27,7 @@ function App() {
 			<Provider value={client}>
 				<div className="App">
 					<Wrapper>
-						<NavBar signal={signal} />
+						<NavBar signal={signal} toggleSignal={toggleSignal} />
 						<Routes>
 							<Route path="/" element={<Home />} />
 							<Route path="/product/:productId" element={<Product />} />

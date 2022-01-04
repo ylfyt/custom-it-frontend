@@ -1,17 +1,29 @@
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMeQuery } from '../graphql/generated/graphql';
+import { RegularUserFragment, useMeQuery } from '../graphql/generated/graphql';
 
 interface NavBarProps {
 	signal: boolean;
+	toggleSignal: (val: boolean) => void;
 }
 
-const NavBar: FunctionComponent<NavBarProps> = ({ signal }) => {
-	const [{ data, fetching, error }] = useMeQuery();
+const NavBar: FunctionComponent<NavBarProps> = ({ signal, toggleSignal }) => {
+	const [{ data, fetching, error }, reMe] = useMeQuery();
+	const [user, setUser] = useState<RegularUserFragment | null>(null);
 
 	useEffect(() => {
-		console.log('Navbar');
-	}, [signal]);
+		if (signal) {
+			reMe({ requestPolicy: 'network-only' });
+		}
+		if (!fetching) {
+			toggleSignal(false);
+		}
+		if (typeof data === 'undefined') {
+			setUser(null);
+		} else {
+			setUser(data.me!);
+		}
+	}, [signal, data]);
 
 	return (
 		<div className="flex justify-between items-center mb-5">
@@ -21,29 +33,17 @@ const NavBar: FunctionComponent<NavBarProps> = ({ signal }) => {
 				</Link>
 			</div>
 			<div className="flex gap-3 text-lg">
-				{fetching ? (
-					<p>Loading...</p>
+				{user ? (
+					<>
+						<Link to="/">Home</Link>
+						<div>Cart</div>
+						<div>{user.username}</div>
+					</>
 				) : (
 					<>
-						{data?.me ? (
-							<>
-								<Link to="/">Home</Link>
-								<div>Cart</div>
-								<div>{data.me.username}</div>
-							</>
-						) : (
-							<>
-								{!error ? (
-									<>
-										<Link to="/">Home</Link>
-										<Link to="/login">Login</Link>
-										<Link to="/register">Register</Link>
-									</>
-								) : (
-									<p>Something wrong!!!</p>
-								)}
-							</>
-						)}
+						<Link to="/">Home</Link>
+						<Link to="/login">Login</Link>
+						<Link to="/register">Register</Link>
 					</>
 				)}
 			</div>

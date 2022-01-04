@@ -3,7 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../graphql/generated/graphql';
 
 interface LoginProps {
-	toggleSignal: () => void;
+	toggleSignal: (val: boolean) => void;
 }
 
 const Login: FunctionComponent<LoginProps> = ({ toggleSignal }) => {
@@ -43,7 +43,7 @@ const Login: FunctionComponent<LoginProps> = ({ toggleSignal }) => {
 
 		if (response.data?.login !== null) {
 			setError('Success');
-			toggleSignal();
+			toggleSignal(true);
 			navigate('/');
 		} else {
 			setError('Failed');
