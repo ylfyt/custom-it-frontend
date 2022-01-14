@@ -37,7 +37,8 @@ const NavBar: FunctionComponent<NavBarProps> = ({ signal, toggleSignal }) => {
 					<>
 						<Link to="/">Home</Link>
 						<div>Cart</div>
-						<div>{user.username}</div>
+						<button>Logout</button>
+						<div className="bg-green-300 px-1">{user.username}</div>
 					</>
 				) : (
 					<>
