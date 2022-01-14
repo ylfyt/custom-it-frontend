@@ -1,6 +1,6 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { RegularUserFragment, useMeQuery } from '../graphql/generated/graphql';
+import { RegularUserFragment, useLogoutMutation, useMeQuery } from '../graphql/generated/graphql';
 
 interface NavBarProps {
 	signal: boolean;
@@ -9,6 +9,7 @@ interface NavBarProps {
 
 const NavBar: FunctionComponent<NavBarProps> = ({ signal, toggleSignal }) => {
 	const [{ data, fetching, error }, reMe] = useMeQuery();
+	const [{ fetching: fetchingLogout }, logout] = useLogoutMutation();
 	const [user, setUser] = useState<RegularUserFragment | null>(null);
 
 	useEffect(() => {
@@ -25,6 +26,14 @@ const NavBar: FunctionComponent<NavBarProps> = ({ signal, toggleSignal }) => {
 		}
 	}, [signal, data]);
 
+	const handleLogoutButton = async () => {
+		console.log('logout');
+		const response = await logout();
+		if (response.data?.logout) {
+			setUser(null);
+		}
+	};
+
 	return (
 		<div className="flex justify-between items-center mb-5">
 			<div className="text-3xl font-bold">
@@ -37,7 +46,9 @@ const NavBar: FunctionComponent<NavBarProps> = ({ signal, toggleSignal }) => {
 					<>
 						<Link to="/">Home</Link>
 						<div>Cart</div>
-						<button>Logout</button>
+						<button onClick={handleLogoutButton} disabled={fetchingLogout}>
+							Logout
+						</button>
 						<div className="bg-green-300 px-1">{user.username}</div>
 					</>
 				) : (
