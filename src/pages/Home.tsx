@@ -11,9 +11,13 @@ const Home: FC = () => {
 			{!fetching && error && <p>Failed to fetch</p>}
 			{!fetching && data?.products && (
 				<div className="flex gap-4 flex-wrap">
-					{data?.products.map((product) => {
-						return <ProductCard product={product} key={product.id} />;
-					})}
+					{data.products.length === 0 ? (
+						<p>No Product</p>
+					) : (
+						data?.products.map((product) => {
+							return <ProductCard product={product} key={product.id} />;
+						})
+					)}
 				</div>
 			)}
 		</div>
