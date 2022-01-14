@@ -10,10 +10,10 @@ const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
 	const [{ fetching }, createComment] = useCreateCommentMutation();
 
 	const [text, setText] = useState('');
+	const [comments, setComments] = useState(product.comments);
 
 	const handleSubmitComment = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log('Submit');
 		const response = await createComment({
 			data: {
 				productId: product.id,
@@ -23,6 +23,8 @@ const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
 		setText('');
 
 		if (response.data?.createComment !== null) {
+			const comment = response.data?.createComment;
+			setComments([...comments, comment!]);
 			console.log('success');
 		} else {
 			// TODO: Send notif
@@ -84,8 +86,8 @@ const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
 					</button>
 				</form>
 				<div className="">
-					{product.comments.map((comment, idx) => {
-						comment = product.comments[product.comments.length - 1 - idx];
+					{comments.map((comment, idx) => {
+						comment = comments[comments.length - 1 - idx];
 						return <Comment key={comment.id} comment={comment} />;
 					})}
 				</div>
