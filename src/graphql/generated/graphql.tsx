@@ -190,6 +190,13 @@ export type RegularProductsFragment = { __typename?: 'Product', id: string, name
 
 export type RegularUserFragment = { __typename?: 'User', id: string, username: string };
 
+export type CreateCommentMutationVariables = Exact<{
+  data: CreateCommentInput;
+}>;
+
+
+export type CreateCommentMutation = { __typename?: 'Mutation', createComment?: { __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } } | null | undefined };
+
 export type LoginMutationVariables = Exact<{
   data: LoginInput;
 }>;
@@ -262,6 +269,23 @@ export const RegularUserFragmentDoc = gql`
   username
 }
     `;
+export const CreateCommentDocument = gql`
+    mutation CreateComment($data: CreateCommentInput!) {
+  createComment(data: $data) {
+    id
+    text
+    createAt
+    user {
+      id
+      username
+    }
+  }
+}
+    `;
+
+export function useCreateCommentMutation() {
+  return Urql.useMutation<CreateCommentMutation, CreateCommentMutationVariables>(CreateCommentDocument);
+};
 export const LoginDocument = gql`
     mutation Login($data: LoginInput!) {
   login(data: $data) {

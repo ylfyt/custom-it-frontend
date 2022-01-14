@@ -1,5 +1,5 @@
-import { FunctionComponent } from 'react';
-import { RegularProductFragment } from '../graphql/generated/graphql';
+import { FunctionComponent, useState } from 'react';
+import { RegularProductFragment, useCreateCommentMutation } from '../graphql/generated/graphql';
 import Comment from './Comment';
 
 interface ProductDetailProps {
@@ -7,6 +7,29 @@ interface ProductDetailProps {
 }
 
 const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
+	const [{ fetching }, createComment] = useCreateCommentMutation();
+
+	const [text, setText] = useState('');
+
+	const handleSubmitComment = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		console.log('Submit');
+		const response = await createComment({
+			data: {
+				productId: product.id,
+				text,
+			},
+		});
+		setText('');
+
+		if (response.data?.createComment !== null) {
+			console.log('success');
+		} else {
+			// TODO: Send notif
+			console.log('Some error');
+		}
+	};
+
 	return (
 		<div className="bg-gray-400 p-4">
 			<div className="flex mb-5">
@@ -45,13 +68,25 @@ const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
 				<hr />
 			</div>
 			<div className="">
-				<div className="flex justify-between">
-					<input type="text" className="mr-2 w-full p-1" placeholder="comment" />
-					<button className="px-3 py-1 bg-yellow-50">Submit</button>
-				</div>
+				<form className="flex justify-between" onSubmit={handleSubmitComment}>
+					<input
+						type="text"
+						className="mr-2 w-full p-1"
+						placeholder="comment"
+						value={text}
+						onChange={(e) => {
+							setText(e.target.value);
+						}}
+					/>
+
+					<button type="submit" className="px-3 py-1 bg-yellow-50" disabled={text === '' && fetching}>
+						Submit
+					</button>
+				</form>
 				<div className="">
 					{product.comments.map((comment, idx) => {
-						return <Comment key={idx} comment={comment} />;
+						comment = product.comments[product.comments.length - 1 - idx];
+						return <Comment key={comment.id} comment={comment} />;
 					})}
 				</div>
 			</div>
