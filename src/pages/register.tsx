@@ -49,12 +49,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
 		<div className="flex flex-col justify-center items-center">
 			<div className="bg-red-200 flex flex-col items-center w-[300px] p-5 rounded-lg shadow-md">
 				<div className="text-2xl">Register</div>
-				<form
-					className="flex flex-col items-center "
-					onSubmit={(e) => {
-						handleSubmit(e);
-					}}
-				>
+				<form className="flex flex-col items-center " onSubmit={handleSubmit}>
 					<input type="text" className="w-[250px] mt-4 p-2 rounded-sm" placeholder="username" value={username} onChange={(e) => handleUsernameChange(e.target.value)} />
 					<input type="password" className="w-[250px] mt-4 p-2 rounded-sm" placeholder="password" value={password} onChange={(e) => handlePasswordChange(e.target.value)} />
 					<button type="submit" className="mt-4 p-2 bg-green-300 rounded-lg shadow-md" disabled={!(validUsername && validPassword && !fetching)}>
