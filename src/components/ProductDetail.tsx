@@ -25,7 +25,6 @@ const ProductDetail: FunctionComponent<ProductDetailProps> = ({ product }) => {
 		if (response.data?.createComment !== null) {
 			const comment = response.data?.createComment;
 			setComments([...comments, comment!]);
-			console.log('success');
 		} else {
 			// TODO: Send notif
 			console.log('Some error');

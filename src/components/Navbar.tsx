@@ -27,7 +27,6 @@ const NavBar: FunctionComponent<NavBarProps> = ({ signal, toggleSignal }) => {
 	}, [signal, data]);
 
 	const handleLogoutButton = async () => {
-		console.log('logout');
 		const response = await logout();
 		if (response.data?.logout) {
 			setUser(null);
