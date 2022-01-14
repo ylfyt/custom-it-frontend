@@ -32,7 +32,8 @@ const Login: FunctionComponent<LoginProps> = ({ toggleSignal }) => {
 		setValidPassword(true);
 	};
 
-	const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		setError('Loading...');
 		const response = await login({
 			data: {
@@ -54,13 +55,13 @@ const Login: FunctionComponent<LoginProps> = ({ toggleSignal }) => {
 		<div className="flex flex-col justify-center items-center">
 			<div className="bg-red-200 flex flex-col items-center w-[300px] p-5 rounded-lg shadow-md">
 				<div className="text-2xl">Login</div>
-				<div className="flex flex-col items-center ">
+				<form className="flex flex-col items-center " onSubmit={handleSubmit}>
 					<input type="text" className="w-[250px] mt-4 p-2 rounded-sm" placeholder="username" value={username} onChange={(e) => handleUsernameChange(e.target.value)} />
 					<input type="password" className="w-[250px] mt-4 p-2 rounded-sm" placeholder="password" value={password} onChange={(e) => handlePasswordChange(e.target.value)} />
-					<button className="mt-4 p-2 bg-green-300 rounded-lg shadow-md" onClick={(e) => handleSubmit(e)} disabled={!(validUsername && validPassword && !fetching)}>
+					<button type="submit" className="mt-4 p-2 bg-green-300 rounded-lg shadow-md" disabled={!(validUsername && validPassword && !fetching)}>
 						Submit
 					</button>
-				</div>
+				</form>
 				<div>{error}</div>
 			</div>
 		</div>
