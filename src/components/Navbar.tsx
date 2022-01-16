@@ -48,7 +48,9 @@ const NavBar: FunctionComponent<NavBarProps> = ({ signal, toggleSignal }) => {
 						<button onClick={handleLogoutButton} disabled={fetchingLogout}>
 							Logout
 						</button>
-						<div className="bg-green-300 px-1">{user.username}</div>
+						<Link to={'/user/' + user.username} className="bg-green-300 px-1">
+							{user.username}
+						</Link>
 					</>
 				) : (
 					<>
