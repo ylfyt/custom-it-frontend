@@ -3,5 +3,6 @@ fragment RegularProducts on Product {
 	name
 	price
 	stock
+	slug
 	imageUrl
 }

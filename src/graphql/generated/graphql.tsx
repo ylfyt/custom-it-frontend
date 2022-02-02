@@ -123,6 +123,7 @@ export type Product = {
   likes: Scalars['Float'];
   name: Scalars['String'];
   price: Scalars['Float'];
+  slug?: Maybe<Scalars['String']>;
   stock: Scalars['Float'];
   store: Store;
   storeId: Scalars['String'];
@@ -133,7 +134,8 @@ export type Query = {
   comment?: Maybe<Comment>;
   comments: Array<Comment>;
   me?: Maybe<User>;
-  product: Product;
+  product?: Maybe<Product>;
+  productBySlug?: Maybe<Product>;
   products: Array<Product>;
   store?: Maybe<Store>;
   stores: Array<Store>;
@@ -147,6 +149,11 @@ export type QueryCommentArgs = {
 
 export type QueryProductArgs = {
   id: Scalars['String'];
+};
+
+
+export type QueryProductBySlugArgs = {
+  slug: Scalars['String'];
 };
 
 
@@ -186,7 +193,7 @@ export type User = {
 
 export type RegularProductFragment = { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } };
 
-export type RegularProductsFragment = { __typename?: 'Product', id: string, name: string, price: number, stock: number, imageUrl: string };
+export type RegularProductsFragment = { __typename?: 'Product', id: string, name: string, price: number, stock: number, slug?: string | null | undefined, imageUrl: string };
 
 export type RegularUserFragment = { __typename?: 'User', id: string, username: string };
 
@@ -226,12 +233,19 @@ export type ProductQueryVariables = Exact<{
 }>;
 
 
-export type ProductQuery = { __typename?: 'Query', product: { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } } };
+export type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } } | null | undefined };
+
+export type ProductBySlugQueryVariables = Exact<{
+  productSlug: Scalars['String'];
+}>;
+
+
+export type ProductBySlugQuery = { __typename?: 'Query', productBySlug?: { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } } | null | undefined };
 
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: string, name: string, price: number, stock: number, imageUrl: string }> };
+export type ProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: string, name: string, price: number, stock: number, slug?: string | null | undefined, imageUrl: string }> };
 
 export const RegularProductFragmentDoc = gql`
     fragment RegularProduct on Product {
@@ -265,6 +279,7 @@ export const RegularProductsFragmentDoc = gql`
   name
   price
   stock
+  slug
   imageUrl
 }
     `;
@@ -343,6 +358,17 @@ export const ProductDocument = gql`
 
 export function useProductQuery(options: Omit<Urql.UseQueryArgs<ProductQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<ProductQuery>({ query: ProductDocument, ...options });
+};
+export const ProductBySlugDocument = gql`
+    query ProductBySlug($productSlug: String!) {
+  productBySlug(slug: $productSlug) {
+    ...RegularProduct
+  }
+}
+    ${RegularProductFragmentDoc}`;
+
+export function useProductBySlugQuery(options: Omit<Urql.UseQueryArgs<ProductBySlugQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<ProductBySlugQuery>({ query: ProductBySlugDocument, ...options });
 };
 export const ProductsDocument = gql`
     query Products {
