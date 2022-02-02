@@ -191,7 +191,7 @@ export type User = {
   username: Scalars['String'];
 };
 
-export type RegularProductFragment = { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } };
+export type RegularProductFragment = { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, slug?: string | null | undefined, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } };
 
 export type RegularProductsFragment = { __typename?: 'Product', id: string, name: string, price: number, stock: number, slug?: string | null | undefined, imageUrl: string };
 
@@ -233,14 +233,14 @@ export type ProductQueryVariables = Exact<{
 }>;
 
 
-export type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } } | null | undefined };
+export type ProductQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, slug?: string | null | undefined, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } } | null | undefined };
 
 export type ProductBySlugQueryVariables = Exact<{
   productSlug: Scalars['String'];
 }>;
 
 
-export type ProductBySlugQuery = { __typename?: 'Query', productBySlug?: { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } } | null | undefined };
+export type ProductBySlugQuery = { __typename?: 'Query', productBySlug?: { __typename?: 'Product', id: string, name: string, description: string, price: number, stock: number, storeId: string, imageUrl: string, slug?: string | null | undefined, comments: Array<{ __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } }>, store: { __typename?: 'Store', id: string, username: string, name: string, address: string } } | null | undefined };
 
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -256,6 +256,7 @@ export const RegularProductFragmentDoc = gql`
   stock
   storeId
   imageUrl
+  slug
   comments {
     id
     text

@@ -6,6 +6,7 @@ fragment RegularProduct on Product {
 	stock
 	storeId
 	imageUrl
+	slug
 	comments {
 		id
 		text

@@ -31,7 +31,7 @@ function App() {
 						<NavBar signal={signal} toggleSignal={toggleSignal} />
 						<Routes>
 							<Route path="/" element={<Home />} />
-							<Route path="/product/:productId" element={<Product />} />
+							<Route path="/product/:productSlug" element={<Product />} />
 							<Route path="/register" element={<Register />} />
 							<Route path="/login" element={<Login toggleSignal={toggleSignal} />} />
 							<Route path="/user/:username" element={<User />} />
