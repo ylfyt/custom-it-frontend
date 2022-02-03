@@ -8,6 +8,7 @@ import Login from './pages/login';
 import NavBar from './components/Navbar';
 import { useState } from 'react';
 import User from './pages/user';
+import CreateStore from './pages/create-store';
 
 const client = createClient({
 	url: 'http://localhost:3333/graphql',
@@ -35,6 +36,7 @@ function App() {
 							<Route path="/register" element={<Register />} />
 							<Route path="/login" element={<Login toggleSignal={toggleSignal} />} />
 							<Route path="/user/:username" element={<User />} />
+							<Route path="/create-store" element={<CreateStore />} />
 						</Routes>
 					</Wrapper>
 				</div>
