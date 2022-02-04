@@ -158,7 +158,8 @@ export type QueryProductBySlugArgs = {
 
 
 export type QueryStoreArgs = {
-  id: Scalars['String'];
+  id?: InputMaybe<Scalars['String']>;
+  username?: InputMaybe<Scalars['String']>;
 };
 
 export type RegisterInput = {
@@ -203,6 +204,13 @@ export type CreateCommentMutationVariables = Exact<{
 
 
 export type CreateCommentMutation = { __typename?: 'Mutation', createComment?: { __typename?: 'Comment', id: string, text: string, createAt: string, user: { __typename?: 'User', id: string, username: string } } | null | undefined };
+
+export type CreateStoreMutationVariables = Exact<{
+  data: CreateStoreInput;
+}>;
+
+
+export type CreateStoreMutation = { __typename?: 'Mutation', createStore?: { __typename?: 'Store', id: string, name: string, username: string, address: string } | null | undefined };
 
 export type LoginMutationVariables = Exact<{
   data: LoginInput;
@@ -306,6 +314,20 @@ export const CreateCommentDocument = gql`
 
 export function useCreateCommentMutation() {
   return Urql.useMutation<CreateCommentMutation, CreateCommentMutationVariables>(CreateCommentDocument);
+};
+export const CreateStoreDocument = gql`
+    mutation CreateStore($data: CreateStoreInput!) {
+  createStore(data: $data) {
+    id
+    name
+    username
+    address
+  }
+}
+    `;
+
+export function useCreateStoreMutation() {
+  return Urql.useMutation<CreateStoreMutation, CreateStoreMutationVariables>(CreateStoreDocument);
 };
 export const LoginDocument = gql`
     mutation Login($data: LoginInput!) {

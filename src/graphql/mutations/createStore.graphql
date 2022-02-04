@@ -1,0 +1,8 @@
+mutation CreateStore($data: CreateStoreInput!) {
+	createStore(data: $data) {
+		id
+		name
+		username
+		address
+	}
+}

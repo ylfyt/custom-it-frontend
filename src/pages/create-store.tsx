@@ -1,13 +1,29 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
+import { useCreateStoreMutation } from '../graphql/generated/graphql';
 
 interface CreateStoreProps {}
 
 const CreateStore: FunctionComponent<CreateStoreProps> = () => {
+	const [{ fetching, error }, createStore] = useCreateStoreMutation();
 	const [name, setName] = useState('');
 	const [address, setAddress] = useState('');
+	const [msg, setMsg] = useState('');
 
-	const handleSubmit = () => {
-		console.log(name, address);
+	const handleSubmit = async () => {
+		setMsg('Loading...');
+		const response = await createStore({ data: { name, address } });
+
+		if (error) {
+			setMsg('Some Error');
+			return;
+		}
+
+		if (response.data?.createStore === null) {
+			setMsg('Failed to Create Store');
+			return;
+		}
+
+		setMsg('Success to create store');
 	};
 
 	return (
@@ -39,10 +55,11 @@ const CreateStore: FunctionComponent<CreateStoreProps> = () => {
 					placeholder="Address"
 					className="bg-gray-300 p-2 w-[20rem] rounded-sm"
 				/>
-				<button disabled={name === '' || address === ''} type="submit" className="bg-gray-600 w-1/2 p-1">
+				<button disabled={name === '' || address === '' || fetching} type="submit" className="bg-gray-600 w-1/2 p-1">
 					Create
 				</button>
 			</form>
+			<p>{msg}</p>
 		</div>
 	);
 };
