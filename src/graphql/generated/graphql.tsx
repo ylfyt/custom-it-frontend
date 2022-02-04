@@ -189,6 +189,7 @@ export type UpdateStoreInput = {
 export type User = {
   __typename?: 'User';
   id: Scalars['ID'];
+  isStore: Scalars['Boolean'];
   username: Scalars['String'];
 };
 
@@ -196,7 +197,7 @@ export type RegularProductFragment = { __typename?: 'Product', id: string, name:
 
 export type RegularProductsFragment = { __typename?: 'Product', id: string, name: string, price: number, stock: number, slug?: string | null | undefined, imageUrl: string };
 
-export type RegularUserFragment = { __typename?: 'User', id: string, username: string };
+export type RegularUserFragment = { __typename?: 'User', id: string, username: string, isStore: boolean };
 
 export type CreateCommentMutationVariables = Exact<{
   data: CreateCommentInput;
@@ -217,7 +218,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'User', id: string, username: string } | null | undefined };
+export type LoginMutation = { __typename?: 'Mutation', login?: { __typename?: 'User', id: string, username: string, isStore: boolean } | null | undefined };
 
 export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -229,12 +230,12 @@ export type RegisterMutationVariables = Exact<{
 }>;
 
 
-export type RegisterMutation = { __typename?: 'Mutation', register?: { __typename?: 'User', id: string, username: string } | null | undefined };
+export type RegisterMutation = { __typename?: 'Mutation', register?: { __typename?: 'User', id: string, username: string, isStore: boolean } | null | undefined };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: string, username: string } | null | undefined };
+export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: string, username: string, isStore: boolean } | null | undefined };
 
 export type ProductQueryVariables = Exact<{
   productId: Scalars['String'];
@@ -304,6 +305,7 @@ export const RegularUserFragmentDoc = gql`
     fragment RegularUser on User {
   id
   username
+  isStore
 }
     `;
 export const CreateCommentDocument = gql`
