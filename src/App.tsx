@@ -36,7 +36,7 @@ function App() {
 							<Route path="/register" element={<Register />} />
 							<Route path="/login" element={<Login toggleSignal={toggleSignal} />} />
 							<Route path="/user/:username" element={<User />} />
-							<Route path="/create-store" element={<CreateStore />} />
+							<Route path="/store" element={<CreateStore />} />
 						</Routes>
 					</Wrapper>
 				</div>

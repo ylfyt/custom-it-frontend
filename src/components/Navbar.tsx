@@ -44,6 +44,7 @@ const NavBar: FunctionComponent<NavBarProps> = ({ signal, toggleSignal }) => {
 				{user ? (
 					<>
 						<Link to="/">Home</Link>
+						<Link to="/store">Store</Link>
 						<div>Cart</div>
 						<button onClick={handleLogoutButton} disabled={fetchingLogout}>
 							Logout
