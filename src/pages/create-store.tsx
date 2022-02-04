@@ -17,8 +17,14 @@ const CreateStore: FunctionComponent<CreateStoreProps> = () => {
 
 	useEffect(() => {
 		if (!fetchingMe) {
-			if (dataMe) {
-				console.log(dataMe.me?.username);
+			if (!errorMe) {
+				if (dataMe?.me) {
+					console.log(dataMe.me?.username);
+				} else {
+					console.log('Not Auth');
+				}
+			} else {
+				console.log('Some Error');
 			}
 		}
 	}, [dataMe, fetchingMe]);

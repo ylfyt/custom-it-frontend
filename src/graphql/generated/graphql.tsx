@@ -255,6 +255,14 @@ export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: string, name: string, price: number, stock: number, slug?: string | null | undefined, imageUrl: string }> };
 
+export type StoreQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['String']>;
+  username?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type StoreQuery = { __typename?: 'Query', store?: { __typename?: 'Store', id: string, username: string, name: string, address: string } | null | undefined };
+
 export const RegularProductFragmentDoc = gql`
     fragment RegularProduct on Product {
   id
@@ -403,4 +411,18 @@ export const ProductsDocument = gql`
 
 export function useProductsQuery(options: Omit<Urql.UseQueryArgs<ProductsQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<ProductsQuery>({ query: ProductsDocument, ...options });
+};
+export const StoreDocument = gql`
+    query Store($id: String, $username: String) {
+  store(id: $id, username: $username) {
+    id
+    username
+    name
+    address
+  }
+}
+    `;
+
+export function useStoreQuery(options: Omit<Urql.UseQueryArgs<StoreQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<StoreQuery>({ query: StoreDocument, ...options });
 };

@@ -1,0 +1,8 @@
+query Store($id: String, $username: String) {
+	store(id: $id, username: $username) {
+		id
+		username
+		name
+		address
+	}
+}
