@@ -1,5 +1,5 @@
-import { FunctionComponent, useEffect, useState } from 'react';
-import { useCreateStoreMutation, useMeQuery } from '../graphql/generated/graphql';
+import { FunctionComponent, useState } from 'react';
+import { useCreateStoreMutation } from '../graphql/generated/graphql';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -7,27 +7,12 @@ interface CreateStoreProps {}
 
 const CreateStore: FunctionComponent<CreateStoreProps> = () => {
 	const [{ fetching, error }, createStore] = useCreateStoreMutation();
-	const [{ data: dataMe, fetching: fetchingMe, error: errorMe }, reMe] = useMeQuery();
 
 	const navigate = useNavigate();
 
 	const [name, setName] = useState('');
 	const [address, setAddress] = useState('');
 	const [msg, setMsg] = useState('');
-
-	useEffect(() => {
-		if (!fetchingMe) {
-			if (!errorMe) {
-				if (dataMe?.me) {
-					console.log(dataMe.me?.username);
-				} else {
-					console.log('Not Auth');
-				}
-			} else {
-				console.log('Some Error');
-			}
-		}
-	}, [dataMe, fetchingMe]);
 
 	const handleSubmit = async () => {
 		setMsg('Loading...');
